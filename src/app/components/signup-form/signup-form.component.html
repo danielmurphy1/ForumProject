@@ -1,0 +1,41 @@
+<form #signupForm="ngForm" (ngSubmit)="saveButtonClickHandler(); signupForm.reset()">
+    <div>
+        <label for="username" class="form-label">Username</label>
+        <input 
+            type="text" 
+            class="form-control mb-3" 
+            id="username"
+            name="username"
+            [(ngModel)]="username"
+            placeholder="Choose A Username"
+        />
+    </div>
+    <div>
+        <label for="email" class="form-label">Email Address</label>
+        <input 
+            type="email" 
+            class="form-control" 
+            id="email"
+            name="email"
+            [(ngModel)]="email"
+            placeholder="Enter Your Email Address"
+            required
+        />
+        <div class="mb-3">We will never share your email with anyone.</div>
+    </div>
+    <div>
+        <label for="password" class="form-label">Password</label>
+        <input 
+            type="text" 
+            class="form-control" 
+            id="password"
+            name="password"
+            [(ngModel)]="password"
+            placeholder="Choose A Password"
+        />
+        <div class="mb-3">Password must containt ADD_THIS_LATER</div>
+    </div>
+    <div class="modal-footer">
+        <button type="submit" class="btn btn-primary">Save</button>
+    </div>
+</form>

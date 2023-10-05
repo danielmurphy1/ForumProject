@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 
 @Component({
   selector: 'app-login-form',
@@ -8,14 +8,17 @@ import { Component, OnInit } from '@angular/core';
 export class LoginFormComponent implements OnInit{
   username: string;
   password: string;
-
+  @Output() onSignUp: EventEmitter<Event> = new EventEmitter();
   constructor(){}
 
   ngOnInit(): void {
     
   }
 
-  test(){
-    console.log("clicked here")
+  // test(){
+  //   console.log("clicked here")
+  // }
+  signupButtonClickHandler(): void{
+    this.onSignUp.emit();
   }
 }
