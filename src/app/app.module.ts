@@ -10,6 +10,7 @@ import { HeaderComponent } from './components/header/header.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { LoginFormComponent } from './components/login-form/login-form.component';
 import { SignupFormComponent } from './components/signup-form/signup-form.component';
+import { BoardsComponent } from './components/boards/boards.component';
 
 @NgModule({
   declarations: [
@@ -17,18 +18,18 @@ import { SignupFormComponent } from './components/signup-form/signup-form.compon
     HomeComponent,
     HeaderComponent,
     LoginFormComponent,
-    SignupFormComponent
+    SignupFormComponent,
+    BoardsComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
     HttpClientModule,
     FormsModule,
     NgbModule,
-    // RouterModule.forRoot([
-    //   { path: '', component: HomeComponent, pathMatch: 'full' },
-    //   { path: 'counter', component: CounterComponent },
-    //   { path: 'fetch-data', component: FetchDataComponent },
-    // ])
+    RouterModule.forRoot([
+      { path: '', component: HomeComponent },
+      { path: 'boards', component: BoardsComponent }
+    ])
   ],
   providers: [],
   bootstrap: [AppComponent]
