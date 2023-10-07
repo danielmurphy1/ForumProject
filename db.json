@@ -1,0 +1,21 @@
+{
+    "boards": [
+        {
+            "id": 1,
+            "title": "College Football", 
+            "description": "A Forum For Discussing All Things College Football.",
+            "topics": 1, 
+            "lastTitle": "Poor Pitt",
+            "lastUser": "Dan",
+            "lastDate": "Oct 5th"
+        }, 
+        {
+            "id": 2,
+            "title": "Video Games",
+            "description": "A Forum For Discussing All Video Games.", 
+            "topics": 1,
+            "lastTitle": "Mortal Kombat 1 Is So Good",
+            "lastUser": "Lupe"
+        }
+    ]
+}

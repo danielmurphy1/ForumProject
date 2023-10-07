@@ -2,7 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
-import { RouterModule } from '@angular/router';
+import { RouterModule, Routes } from '@angular/router';
 
 import { AppComponent } from './app.component';
 import { HomeComponent } from './components/home/home.component';
@@ -11,6 +11,15 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { LoginFormComponent } from './components/login-form/login-form.component';
 import { SignupFormComponent } from './components/signup-form/signup-form.component';
 import { BoardsComponent } from './components/boards/boards.component';
+import { PostsComponent } from './components/posts/posts.component';
+
+const appRoutes: Routes = [
+  { path: '', component: HomeComponent },
+  { path: 'boards', component: BoardsComponent },
+  // { path: 'boards/College Football', component: HomeComponent }
+  { path: 'boards/:id', component: PostsComponent },
+  { path: '**', component: HomeComponent },
+];
 
 @NgModule({
   declarations: [
@@ -19,17 +28,15 @@ import { BoardsComponent } from './components/boards/boards.component';
     HeaderComponent,
     LoginFormComponent,
     SignupFormComponent,
-    BoardsComponent
+    BoardsComponent,
+    PostsComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
     HttpClientModule,
     FormsModule,
     NgbModule,
-    RouterModule.forRoot([
-      { path: '', component: HomeComponent },
-      { path: 'boards', component: BoardsComponent }
-    ])
+    RouterModule.forRoot(appRoutes)
   ],
   providers: [],
   bootstrap: [AppComponent]
