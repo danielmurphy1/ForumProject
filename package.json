@@ -10,7 +10,8 @@
     "build": "ng build",
     "build:ssr": "ng run ForumProject:server:dev",
     "watch": "ng build --watch --configuration development",
-    "test": "ng test"
+    "test": "ng test",
+    "server": "json-server --watch db.json --port 5000"
   },
   "private": true,
   "dependencies": {
