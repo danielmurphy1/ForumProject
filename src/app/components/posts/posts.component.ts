@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-posts',
@@ -6,9 +7,13 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./posts.component.css']
 })
 export class PostsComponent implements OnInit{
-  constructor(){}
+  constructor(private modalService: NgbModal){}
 
   ngOnInit(): void {
-    
+
+  }
+
+  open(content: any){
+    this.modalService.open(content, { centered: true} )
   }
 }

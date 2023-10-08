@@ -1,0 +1,30 @@
+<form #newPostForm="ngForm" (ngSubmit)="postSaveButtonClickHandler(); newPostForm.reset()">
+    <div>
+        <label for="title" class="form-label">Title</label>
+        <input 
+            type="text"
+            class="form-control mb-3"
+            id="title"
+            name="title"
+            [(ngModel)]="title"
+            placeholder="Title of Post"
+            required
+        >
+    </div>
+    <div>
+        <label for="postBody" class="form-label"></label>
+        <textarea 
+            class="form-control"
+            name="postBody" 
+            id="postBody" 
+            cols="30" 
+            rows="10"
+            [(ngModel)]="postBody"
+            placeholder="Type your post text here"
+            required>
+        </textarea>
+    </div>
+    <div class="modal-footer">
+        <button type="submit" class="btn btn-primary">Save</button>
+    </div>
+</form>

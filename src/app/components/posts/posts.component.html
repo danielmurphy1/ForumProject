@@ -9,10 +9,18 @@
         </div>
     </div>
     <div class="d-flex flex-column flex-md-row justify-content-between">
-        <button class="btn btn-danger mb-3">Back To The Boards</button>
-        <button class="btn btn-primary mb-3">Create New Post</button>
+        <button class="btn btn-danger mb-3" routerLink="/boards">Back To The Boards</button>
+        <button class="btn btn-primary mb-3" (click)="open(content)">Create New Post</button>
     </div>
-    <!-- modal for create new post -->
+    <ng-template #content let-modal>
+        <div class="modal-header">
+            <h4 class="modal-title">Create Post</h4>
+            <button class="btn btn-danger" (click)="modal.dismiss()">X</button>
+        </div>
+        <div class="modal-body">
+            <app-new-post-form (onNewPostSave)="modal.close()"></app-new-post-form>
+        </div>
+    </ng-template>
     <div class="table-responsive">
         <table class="table table-bordered">
             <thead class="table-light">
