@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Board } from '../../Board';
+import { Board } from '../../models/Board';
 import { Router } from '@angular/router';
 import { DatabaseService } from '../../services/database.service';
 
