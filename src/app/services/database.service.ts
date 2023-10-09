@@ -17,7 +17,7 @@ export class DatabaseService {
     return this.http.get<Board[]>(`${this.apiUrl}/boards`);
   }
 
-  getPosts(): Observable<Post[]>{
-    return this.http.get<Post[]>(`${this.apiUrl}/posts`);
-  }
+  // getPosts(): Observable<Post[]>{
+  //   return this.http.get<Post[]>(`${this.apiUrl}/posts`);
+  // }
 }

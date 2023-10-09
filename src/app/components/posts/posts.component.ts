@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { DatabaseService } from '../../services/database.service';
 import { Post } from '../../models/Post';
-import { Router } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-posts',
@@ -10,28 +10,33 @@ import { Router } from '@angular/router';
   styleUrls: ['./posts.component.css']
 })
 export class PostsComponent implements OnInit{
-  posts: Post[];
+  posts: Post[] = [];
   page: number = 1;
   pageSize: number = 10;
   collectionSize: number;
+  boardTitle: string;
+  boardText: string;
 
-  constructor(private modalService: NgbModal, private dbservice: DatabaseService, private router: Router){}
+  constructor(private modalService: NgbModal, private dbservice: DatabaseService, private route: ActivatedRoute){}
 
   ngOnInit(): void {
-    //need way to check board name and only select posts that match board name
-
-
-    // this.dbservice.getPosts().subscribe((posts) => {
-    //   for(let post of posts){
-    //     if post.
-    //   }
-    // })
-    
-    this.dbservice.getPosts().subscribe((posts) => {
-      this.posts = posts;
+    this.dbservice.getBoards().subscribe((boards) => {
+        for(const board of boards){
+          if(board.title === this.route.snapshot.params.id){
+            this.posts = board.posts
+            console.log(this.posts)
+            this.boardTitle = board.title;
+            this.boardText = board.description;
+          }
+        }
       this.collectionSize = this.posts.length;
-    })
-    console.log(this.router.routerState)
+    });
+    this.route.params.subscribe((params) => {
+      console.log(params)
+    });
+    console.log(this.route.snapshot)
+    console.log("this.route.params", this.route.params)
+    console.log("this.route.snapshote.params", this.route.snapshot.params)
   }
 
   open(content: any){

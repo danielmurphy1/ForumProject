@@ -1,3 +1,5 @@
+import { Post } from "./Post";
+
 export interface Board{
     id: number,
     title: string, 
@@ -5,6 +7,7 @@ export interface Board{
     topics: number,
     lastTitle: string,
     lastUser: string,
-    lastDate: string
+    lastDate: string, 
+    posts: Post[]
 
 }
