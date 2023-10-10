@@ -1,3 +1,5 @@
+import { Reply } from "./Reply";
+
 export interface Post {
     id: number, 
     board: string, 
@@ -5,5 +7,6 @@ export interface Post {
     author: string, 
     replies: number, 
     views: number, 
-    body: string
+    body: string, 
+    postReplies?: Reply[]
 }

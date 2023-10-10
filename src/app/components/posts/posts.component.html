@@ -24,7 +24,8 @@
     <ngb-pagination
         [(page)]="page"
         [pageSize]="pageSize"
-        [collectionSize]="collectionSize"></ngb-pagination>
+        [collectionSize]="collectionSize">
+    </ngb-pagination>
     <div class="table-responsive">
         <table class="table table-bordered">
             <thead class="table-light">
@@ -37,7 +38,7 @@
             </thead>
             <tbody>
                 <tr *ngFor="let post of posts | slice: (page-1) * pageSize : page * pageSize">
-                    <td><a href="#">{{ post.title }}</a></td>
+                    <td><a routerLink="{{ post.title }}">{{ post.title }}</a></td>
                     <td>{{ post.author }}</td>
                     <td>{{ post.replies }}</td>
                     <td>{{ post.views }}</td>

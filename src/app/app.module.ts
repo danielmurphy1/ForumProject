@@ -13,12 +13,14 @@ import { SignupFormComponent } from './components/signup-form/signup-form.compon
 import { BoardsComponent } from './components/boards/boards.component';
 import { PostsComponent } from './components/posts/posts.component';
 import { NewPostFormComponent } from './components/new-post-form/new-post-form.component';
+import { RepliesComponent } from './components/replies/replies.component';
 
 const appRoutes: Routes = [
   { path: '', component: HomeComponent },
   { path: 'boards', component: BoardsComponent },
   // { path: 'boards/College Football', component: HomeComponent }
   { path: 'boards/:id', component: PostsComponent },
+  { path: 'boards/:id/:topic', component: RepliesComponent },
   { path: '**', component: HomeComponent },
 ];
 
@@ -31,7 +33,8 @@ const appRoutes: Routes = [
     SignupFormComponent,
     BoardsComponent,
     PostsComponent,
-    NewPostFormComponent
+    NewPostFormComponent,
+    RepliesComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),

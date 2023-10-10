@@ -16,7 +16,121 @@
                     "author": "Lupe", 
                     "replies": 2, 
                     "views": 4, 
-                    "body": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."
+                    "body": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+                    "postReplies": [
+                        {
+                            "id": 1, 
+                            "originalPost": "Poor Pitt", 
+                            "title": "Re: Poor Pitt", 
+                            "author": "Ben", 
+                            "body":"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."
+                        },
+                        {
+                            "id": 2, 
+                            "originalPost": "Poor Pitt", 
+                            "title": "Re: Poor Pitt", 
+                            "author": "The Real AD", 
+                            "body":"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."
+                        },
+                        {
+                            "id": 3, 
+                            "originalPost": "Poor Pitt", 
+                            "title": "Re: Poor Pitt", 
+                            "author": "Lupe", 
+                            "body":" sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."
+                        },
+                        {
+                            "id": 4, 
+                            "originalPost": "Poor Pitt", 
+                            "title": "Re: Poor Pitt", 
+                            "author": "The Real AD", 
+                            "body":"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."
+                        },
+                        {
+                            "id": 6, 
+                            "originalPost": "Poor Pitt", 
+                            "title": "Re: Poor Pitt", 
+                            "author": "Admin", 
+                            "body":"Lorem smod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."
+                        },
+                        {
+                            "id": 7, 
+                            "originalPost": "Poor Pitt", 
+                            "title": "Re: Poor Pitt", 
+                            "author": "The Real AD", 
+                            "body":"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud esi ut aliquip ex ea commodo consequat."
+                        },
+                        {
+                            "id": 8, 
+                            "originalPost": "Poor Pitt", 
+                            "title": "Re: Poor Pitt", 
+                            "author": "Lupe", 
+                            "body":"Lorem ipsum adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."
+                        },
+                        {
+                            "id": 9, 
+                            "originalPost": "Poor Pitt", 
+                            "title": "Re: Poor Pitt", 
+                            "author": "The Real AD", 
+                            "body":"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."
+                        },
+                        {
+                            "id": 10, 
+                            "originalPost": "Poor Pitt", 
+                            "title": "Re: Poor Pitt", 
+                            "author": "Ben", 
+                            "body":"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."
+                        },
+                        {
+                            "id": 11, 
+                            "originalPost": "Poor Pitt", 
+                            "title": "Re: Poor Pitt", 
+                            "author": "Lupe", 
+                            "body":"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."
+                        },
+                        {
+                            "id": 12, 
+                            "originalPost": "Poor Pitt", 
+                            "title": "Re: Poor Pitt", 
+                            "author": "Ben", 
+                            "body":"Lorem ipsum dosectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."
+                        },
+                        {
+                            "id": 13, 
+                            "originalPost": "Poor Pitt", 
+                            "title": "Re: Poor Pitt", 
+                            "author": "Admin", 
+                            "body":"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."
+                        },
+                        {
+                            "id": 14, 
+                            "originalPost": "Poor Pitt", 
+                            "title": "Re: Poor Pitt", 
+                            "author": "Ben", 
+                            "body":"Lorem tur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."
+                        },
+                        {
+                            "id": 15, 
+                            "originalPost": "Poor Pitt", 
+                            "title": "Re: Poor Pitt", 
+                            "author": "The Real AD", 
+                            "body":"Lorem ipsum dolor sie magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."
+                        },
+                        {
+                            "id": 16, 
+                            "originalPost": "Poor Pitt", 
+                            "title": "Re: Poor Pitt", 
+                            "author": "Crew", 
+                            "body":"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."
+                        },
+                        {
+                            "id": 17, 
+                            "originalPost": "Poor Pitt", 
+                            "title": "Re: Poor Pitt", 
+                            "author": "Admin", 
+                            "body":"Lorem ipsum dolor sitr adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."
+                        }
+                    ]
                 }, 
                 {
                     "id": 2, 

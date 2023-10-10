@@ -1,11 +1,10 @@
 <div class="container red-border">
-    <div *ngFor="let board of boards" class="card mb-2 container w-75" routerLink="{{ board.title }}">
+    <div *ngFor="let board of boards" class="card mb-2 container w-75">
         <div class="card-body d-flex flex-column flex-md-row justify-content-between">
             <img src="https://upload.wikimedia.org/wikipedia/en/c/cf/NCAA_football_icon_logo.svg" class="col-md-2" alt="">
             <div class="col-md-5">
-                <h5 class="card-title">{{ board.title }}</h5>
+                <a  routerLink="{{ board.title }}"><h5 class="card-title">{{ board.title }}</h5></a>
                 <p class="card-text">{{ board.description }}</p>
-                <button class="btn btn-danger" (click)="test()">Click me</button>
             </div>
             <div class="col-md-2">
                 <p>Number of Topics: {{ board.topics }}</p>

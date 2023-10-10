@@ -18,8 +18,4 @@ export class BoardsComponent implements OnInit{
       this.boards = boards;
     }) 
   }
-
-  test(){
-    console.log(this.router.url)
-  }
 }
