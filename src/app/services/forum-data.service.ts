@@ -7,7 +7,7 @@ import { Post } from '../models/Post';
 @Injectable({
   providedIn: 'root'
 })
-export class DatabaseService {
+export class ForumDataService {
   //json-server server
   private apiUrl = 'http://localhost:5000';
 

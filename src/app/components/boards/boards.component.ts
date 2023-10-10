@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Board } from '../../models/Board';
 import { Router } from '@angular/router';
-import { DatabaseService } from '../../services/database.service';
+import { ForumDataService } from '../../services/forum-data.service';
 
 @Component({
   selector: 'app-boards',
@@ -11,10 +11,10 @@ import { DatabaseService } from '../../services/database.service';
 export class BoardsComponent implements OnInit{
   boards: Board[];
 
-  constructor(private router: Router, private dbService: DatabaseService) {}
+  constructor(private router: Router, private dataService: ForumDataService) {}
 
   ngOnInit(): void {
-    this.dbService.getBoards().subscribe((boards) => {
+    this.dataService.getBoards().subscribe((boards) => {
       this.boards = boards;
     }) 
   }

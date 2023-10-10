@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
-import { DatabaseService } from '../../services/database.service';
+import { ForumDataService } from '../../services/forum-data.service';
 import { Post } from '../../models/Post';
 import { ActivatedRoute } from '@angular/router';
 
@@ -17,10 +17,10 @@ export class PostsComponent implements OnInit{
   boardTitle: string;
   boardText: string;
 
-  constructor(private modalService: NgbModal, private dbservice: DatabaseService, private route: ActivatedRoute){}
+  constructor(private modalService: NgbModal, private dataService: ForumDataService, private route: ActivatedRoute){}
 
   ngOnInit(): void {
-    this.dbservice.getBoards().subscribe((boards) => {
+    this.dataService.getBoards().subscribe((boards) => {
         for(const board of boards){
           if(board.title === this.route.snapshot.params.id){
             this.posts = board.posts
