@@ -37,6 +37,9 @@ export class RepliesComponent implements OnInit {
         }
       }
     })
+    this.dataService.getSinglePost(this.route.snapshot.params.topic).subscribe((post) =>{
+      this.topic = post;
+    })
 
   }
 
