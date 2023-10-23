@@ -1,7 +1,4 @@
-﻿using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
-
-namespace ForumProject.DTOs
+﻿namespace ForumProject.DataTransferObjects
 {
     public class UserDTO
     {

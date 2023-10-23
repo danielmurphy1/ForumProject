@@ -1,6 +1,4 @@
-﻿using ForumProject.Models;
-
-namespace ForumProject.DTOs
+﻿namespace ForumProject.DataTransferObjects
 {
     public class PostDTO
     {
