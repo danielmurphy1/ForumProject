@@ -10,9 +10,9 @@
                 <p>Number of Topics: {{ board.topics }}</p>
             </div>
             <div class="col-md-3">
-                <p>Last Post: {{ board.lastTitle }}</p>
-                <p>By: {{ board.lastUser }}</p>
-                <p>On: {{ board.lastDate }}</p>
+                <p>Last Post: {{ board.lastPost.title }}</p>
+                <p>By: {{ board.lastPost.user }}</p>
+                <p>On: {{ board.lastPost.createdAt | date: 'short'}}</p>
             </div>
         </div>
         

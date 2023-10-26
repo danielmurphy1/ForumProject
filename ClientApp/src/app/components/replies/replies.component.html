@@ -5,7 +5,7 @@
             <div class="d-flex flex-row justify-content-between">
                 <div>
                     <h5 class="card-title">{{ topic.title }}</h5>
-                    <h6 class="card-subtitle mb-2 text-body-secondary">By: {{ topic.author }}</h6>
+                    <h6 class="card-subtitle mb-2 text-body-secondary">By: {{ topic.user }}</h6>
                 </div>
                 <div>
                     <p>Post #: 1</p>
@@ -18,7 +18,7 @@
         </div>
     </div>
     <div class="d-flex flex-column flex-md-row justify-content-between">
-        <button class="btn btn-danger mb-3" routerLink="/boards/{{topic.id}}">Back To Posts</button>
+        <button class="btn btn-danger mb-3" routerLink="/boards/{{topic.boardId}}">Back To Posts</button>
         <button class="btn btn-primary mb-3" (click)="scrollToBottom()">Reply</button>
     </div>
     <hr>
