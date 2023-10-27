@@ -1,4 +1,5 @@
 using ForumProject.Data;
+using ForumProject.DatabaseServices.BoardsServices;
 using System.Text.Json.Serialization;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -7,6 +8,7 @@ var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddControllersWithViews();
 builder.Services.AddDbContext<ForumDataContext>();
+builder.Services.AddScoped<GetBoardsService>();
 
 builder.Services.AddCors(p => p.AddPolicy("corspolicy", build =>
 {

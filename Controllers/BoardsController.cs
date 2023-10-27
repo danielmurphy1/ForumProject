@@ -7,6 +7,10 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using ForumProject.Data;
 using ForumProject.Models;
+using ForumProject.DataTransferObjects;
+using ForumProject.DatabaseServices.BoardsServices;
+using NuGet.Protocol;
+using System.Data.Common;
 
 namespace ForumProject.Controllers
 {
@@ -15,40 +19,39 @@ namespace ForumProject.Controllers
     public class BoardsController : ControllerBase
     {
         private readonly ForumDataContext _context;
+        private readonly GetBoardsService _getBoardsService;
 
-        public BoardsController(ForumDataContext context)
+        public BoardsController(ForumDataContext context, GetBoardsService getBoardsService)
         {
             _context = context;
+            _getBoardsService = getBoardsService;
         }
 
         // GET: api/Boards
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Board>>> GetBoards()
+        public async Task<ActionResult<BoardDTO>> GetBoards()
         {
-          if (_context.Boards == null)
-          {
-              return NotFound();
-          }
-            return await _context.Boards.ToListAsync();
+            var boards = await _getBoardsService.GetBoardsWithPostInfo();
+            return Ok(boards);
         }
 
         // GET: api/Boards/5
         [HttpGet("{id}")]
-        public async Task<ActionResult<Board>> GetBoard(int id)
+        public async Task<ActionResult<BoardDTO>> GetBoard(int id)
         {
-          if (_context.Boards == null)
-          {
-              return NotFound();
-          }
-            var board = await _context.Boards.FindAsync(id);
+            try
+            {
+                var board = await _getBoardsService.GetSingleBoard(id);
+                return Ok(board);
 
-            if (board == null)
+            }
+            catch (NullReferenceException ex)
             {
                 return NotFound();
             }
 
-            return board;
         }
+        
 
         // PUT: api/Boards/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
