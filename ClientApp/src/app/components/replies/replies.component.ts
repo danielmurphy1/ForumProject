@@ -20,25 +20,28 @@ export class RepliesComponent implements OnInit {
   constructor(private dataService: ForumDataService, private route: ActivatedRoute){}
 
   ngOnInit(): void {
-    console.log(this.route.snapshot.params.topic)
-    this.dataService.getBoards().subscribe((boards) => {
-      for(const board of boards){
-        if(board.title === this.route.snapshot.params.id){
-          for(const post of board.posts){
-            if(post.title === this.route.snapshot.params.topic){
-              this.topic = post;
-              if(post.postReplies){
-                this.postReplies = post.postReplies;
-                this.collectionSize = this.postReplies.length;
-              }
-            }
+    console.log(this.route.snapshot)
+
+    console.log(this.route.snapshot.params)
+    // this.dataService.getBoards().subscribe((boards) => {
+    //   for(const board of boards){
+    //     if(board.title === this.route.snapshot.params.id){
+    //       for(const post of board.posts){
+    //         if(post.title === this.route.snapshot.params.topic){
+    //           this.topic = post;
+    //           if(post.postReplies){
+    //             this.postReplies = post.postReplies;
+    //             this.collectionSize = this.postReplies.length;
+    //           }
+    //         }
             
-          }
-        }
-      }
-    })
+    //       }
+    //     }
+    //   }
+    // })
     this.dataService.getSinglePost(this.route.snapshot.params.topic).subscribe((post) =>{
       this.topic = post;
+      console.log("topic", this.topic)
     })
 
   }
