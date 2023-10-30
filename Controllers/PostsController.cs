@@ -3,6 +3,8 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using ForumProject.Models;
 using Microsoft.EntityFrameworkCore;
+using ForumProject.DataTransferObjects;
+using ForumProject.DatabaseServices.PostsServices;
 
 namespace ForumProject.Controllers
 {
@@ -11,10 +13,12 @@ namespace ForumProject.Controllers
     public class PostsController : ControllerBase
     {
         private readonly ForumDataContext _context;
+        private readonly GetPostsService _getPostsService;
 
-        public PostsController(ForumDataContext context)
+        public PostsController(ForumDataContext context, GetPostsService getPostsService)
         {
             _context = context;
+            _getPostsService = getPostsService;
         }
 
         //GET: api/Posts
@@ -27,44 +31,78 @@ namespace ForumProject.Controllers
 
         //GET: api/Posts/1
         [HttpGet("{id}")]
-        public async Task<ActionResult<Post>> GetSinglePost(int id)
+        public async Task<ActionResult<PostDTO>> GetSinglePost(int id)
         {
-            if(_context.Posts == null)
+            try
+            {
+                var post = await _getPostsService.GetSinglePostWithUserAndReplies(id);
+                return Ok(post);
+            }
+            catch (NullReferenceException ex)
             {
                 return NotFound();
             }
-            var post =  await _context.Posts.FindAsync(id);
-            if(post == null)
-            {
-                return NotFound();
-            }
-            return post;
         }
 
+        //[HttpGet("withusers")]
+        //public async Task<ActionResult<IEnumerable<PostDTO>>> GetWithUsers()
+        //{
+        //    //var withUsers = await _context.Posts.Include(x => x.User)
+        //    //    .Where(p => p.BoardId == 1).ToListAsync();
+        //    //return withUsers;
 
-        //GET: api/Posts/boards/1
-        [HttpGet("boards/{boardId}")]
-        public async Task<ActionResult<IEnumerable<Post>>> GetBoardPosts(int boardId)
-        {
-            var tempPosts = _context.Posts
-                .Where(p => p.BoardId == boardId);
-            return await tempPosts.ToListAsync();
+        //    var postEntities = await _context.Posts.Include(x => x.User)
+        //        .OrderBy(x => x.CreatedAt)
+        //        .ToListAsync();
 
-            //var tempPosts = _context.Posts
-            //    .Where(p => p.BoardId == id);
-            //return await tempPosts.ToListAsync();
+        //    var postDTOs = new List<PostDTO>();
 
-            //var title = await _context.Boards.Where(b => b.Title == id).FirstOrDefaultAsync();
-            //var tempPosts = _context.Posts
-            //    .Where(p => p.BoardId == title.Id);
-            //return await tempPosts.ToListAsync();
+        //    for (int i = 0; i < postEntities.Count; i++)
+        //    {
+        //        var postEntity = postEntities[i];
+        //        postDTOs.Add(new PostDTO
+        //        {
+        //            Id = postEntity.Id,
+        //            Title = postEntity.Title,
+        //            Body = postEntity.Body,
+        //            User = new UserDTO
+        //            {
+        //                Id = postEntity.User.Id,
+        //                Username = postEntity.User.Username,
+        //                CreatedAt = postEntity.User.CreatedAt
+        //            }
+        //        });
+        //    }
 
-            //var posts =  _context.Posts
-            //    .Join(_context.Boards.Where(b => b.Title == board),
-            //    p => p.BoardId,
-            //    b => b.Id,
-            //    (p, b) => new { Posts = p, Boards = b });
-            //return Ok(await posts.ToListAsync());
-        }
+        //    return postDTOs;
+        //}
+
+
+        //GET: api/Posts/boardposts/1
+        //[HttpGet("boardposts/{boardId}")]
+        //public async Task<ActionResult<IEnumerable<Post>>> GetBoardPosts(int boardId)
+        //{
+        //    var tempPosts = _context.Posts
+        //        .Include(p => p.User)
+        //        .Where(p => p.BoardId == boardId)
+        //        .OrderBy(p => p.CreatedAt);
+        //    return await tempPosts.ToListAsync();
+
+        //    //var tempPosts = _context.Posts
+        //    //    .Where(p => p.BoardId == id);
+        //    //return await tempPosts.ToListAsync();
+
+        //    //var title = await _context.Boards.Where(b => b.Title == id).FirstOrDefaultAsync();
+        //    //var tempPosts = _context.Posts
+        //    //    .Where(p => p.BoardId == title.Id);
+        //    //return await tempPosts.ToListAsync();
+
+        //    //var posts =  _context.Posts
+        //    //    .Join(_context.Boards.Where(b => b.Title == board),
+        //    //    p => p.BoardId,
+        //    //    b => b.Id,
+        //    //    (p, b) => new { Posts = p, Boards = b });
+        //    //return Ok(await posts.ToListAsync());
+        //}
     }
 }

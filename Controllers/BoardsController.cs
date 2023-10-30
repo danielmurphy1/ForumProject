@@ -31,7 +31,7 @@ namespace ForumProject.Controllers
         [HttpGet]
         public async Task<ActionResult<BoardDTO>> GetBoards()
         {
-            var boards = await _getBoardsService.GetBoardsWithPostInfo();
+            var boards = await _getBoardsService.GetBoardsWithLastPostInfo();
             return Ok(boards);
         }
 
