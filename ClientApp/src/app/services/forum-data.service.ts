@@ -19,13 +19,13 @@ export class ForumDataService {
     return this.http.get<Board[]>(`${this.apiUrl}/Boards`);
   }
 
-  getSingleBoard(id: number): Observable<Board>{
+  getSingleBoardWithPosts(id: number): Observable<Board>{
     return this.http.get<Board>(`${this.apiUrl}/Boards/${id}`);
   }
 
-  getBoardPosts(id: number): Observable<Post[]>{
-    return this.http.get<Post[]>(`${this.apiUrl}/Posts/boards/${id}`);
-  }
+  // getBoardPosts(id: number): Observable<Post[]>{
+  //   return this.http.get<Post[]>(`${this.apiUrl}/Posts/boardposts/${id}`);
+  // }
 
   getSinglePost(id: number): Observable<Post>{
     return this.http.get<Post>(`${this.apiUrl}/Posts/${id}`);
