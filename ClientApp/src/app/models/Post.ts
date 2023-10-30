@@ -11,5 +11,5 @@ export interface Post {
     views: number, 
     body: string,
     createdAt: Date, 
-    postReplies?: Reply[]
+    replyMessages?: Reply[]
 }

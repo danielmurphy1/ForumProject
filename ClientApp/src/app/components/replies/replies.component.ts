@@ -11,7 +11,7 @@ import { Reply } from '../../models/Reply';
 })
 export class RepliesComponent implements OnInit {
   topic: Post;
-  postReplies: Reply[];
+  // postReplies: Reply[];
   page: number = 1;
   pageSize: number = 10;
   collectionSize: number;
@@ -39,8 +39,10 @@ export class RepliesComponent implements OnInit {
     //     }
     //   }
     // })
-    this.dataService.getSinglePost(this.route.snapshot.params.topic).subscribe((post) =>{
+    this.dataService.getSinglePostWithReplies(this.route.snapshot.params.topic).subscribe((post) =>{
       this.topic = post;
+      this.collectionSize = post.replyMessages?.length || 0;
+      // this.postReplies = this.topic.postReplies;
       console.log("topic", this.topic)
     })
 
