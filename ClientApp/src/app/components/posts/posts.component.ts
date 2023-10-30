@@ -21,26 +21,12 @@ export class PostsComponent implements OnInit{
   constructor(private modalService: NgbModal, private dataService: ForumDataService, private route: ActivatedRoute){}
 
   ngOnInit(): void {
-    // this.dataService.getBoards().subscribe((boards) => {
-    //     for(const board of boards){
-    //       if(board.title === this.route.snapshot.params.id){
-    //         this.posts = board.posts
-    //         console.log(this.posts)
-    //         this.boardTitle = board.title;
-    //         this.boardText = board.description;
-    //       }
-    //     }
-    //   this.collectionSize = this.posts.length;
-    // });
-    this.dataService.getBoardPosts(this.route.snapshot.params.id).subscribe((posts) =>{
-      this.posts = posts;
-      console.log(this.posts)
-      this.collectionSize = this.posts.length;
-    });
-    this.dataService.getSingleBoard(this.route.snapshot.params.id).subscribe((board) =>{
+    this.dataService.getSingleBoardWithPosts(this.route.snapshot.params.id).subscribe((board) =>{
       this.boardTitle = board.title;
       this.boardText = board.description;
       this.boardImg = board.imgUrl;
+      this.posts = board.posts;
+      this.collectionSize = board.posts.length;
     })
     this.route.params.subscribe((params) => {
       console.log(params)
