@@ -14,11 +14,13 @@ namespace ForumProject.Controllers
     {
         private readonly ForumDataContext _context;
         private readonly GetPostsService _getPostsService;
+        private readonly PostPostsService _postPostsService;
 
-        public PostsController(ForumDataContext context, GetPostsService getPostsService)
+        public PostsController(ForumDataContext context, GetPostsService getPostsService, PostPostsService postPostsService)
         {
             _context = context;
             _getPostsService = getPostsService;
+            _postPostsService = postPostsService;
         }
 
         //GET: api/Posts
@@ -41,6 +43,21 @@ namespace ForumProject.Controllers
             catch (NullReferenceException ex)
             {
                 return NotFound();
+            }
+        }
+
+        //POST: api/Posts
+        [HttpPost]
+        public async Task<ActionResult<Post>> PostPost(Post post)
+        {
+            try
+            {
+                var newPost = _postPostsService.AddPost(post);
+                return CreatedAtAction("PostsPost", new { id = post.Id }, newPost);
+            } 
+            catch (BadHttpRequestException ex)
+            {
+                return BadRequest(ex.Message);
             }
         }
 

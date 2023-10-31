@@ -3,6 +3,7 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { ForumDataService } from '../../services/forum-data.service';
 import { Post } from '../../models/Post';
 import { ActivatedRoute } from '@angular/router';
+import { User } from '../../models/User';
 
 @Component({
   selector: 'app-posts',
@@ -38,5 +39,19 @@ export class PostsComponent implements OnInit{
 
   open(content: any){
     this.modalService.open(content, { centered: true} )
+  }
+
+  addNewPost(post: Post){
+    this.dataService.addNewPost(post).subscribe((p) => {
+      // this.posts.push(p);
+      //User object is added to the response - user object not sent to server/database
+      p.user = {
+        id: p.userId,
+        username: "Ben"
+      }
+      console.log("response post", p)
+      this.posts.push(p);
+    });
+    console.log("inbound post", post)
   }
 }

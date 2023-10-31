@@ -2,14 +2,15 @@ import { Reply } from "./Reply";
 import { User } from "./User";
 
 export interface Post {
-    id: number, 
+    id?: number, 
     boardId: number,
-    board: string, 
+    board?: string, 
     title: string, 
-    user: User, 
+    user?: User, 
+    userId: number,
     replies: number, 
     views: number, 
     body: string,
-    createdAt: Date, 
+    createdAt?: Date, 
     replyMessages?: Reply[]
 }

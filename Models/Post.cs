@@ -12,8 +12,7 @@ namespace ForumProject.Models
         public string Body { get; set; }
         [Required]
         public int UserId { get; set; }
-        [Required]
-        public User User { get; set; }
+        public User? User { get; set; }
         [Required]
         public DateTime CreatedAt { get; set; }
         [Required]
@@ -22,8 +21,7 @@ namespace ForumProject.Models
         public int Views { get; set; }
         [Required]
         public int BoardId { get; set; }
-        [Required]
-        public Board Board { get; set; }
-        public IEnumerable<Reply> ReplyMessages { get; set; }
+        public Board? Board { get; set; }
+        public IEnumerable<Reply>? ReplyMessages { get; set; }
     }
 }

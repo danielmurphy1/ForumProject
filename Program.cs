@@ -11,6 +11,7 @@ builder.Services.AddControllersWithViews();
 builder.Services.AddDbContext<ForumDataContext>();
 builder.Services.AddScoped<GetBoardsService>();
 builder.Services.AddScoped<GetPostsService>();
+builder.Services.AddScoped<PostPostsService>();
 
 builder.Services.AddCors(p => p.AddPolicy("corspolicy", build =>
 {
