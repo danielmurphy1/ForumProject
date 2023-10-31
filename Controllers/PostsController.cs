@@ -52,7 +52,7 @@ namespace ForumProject.Controllers
         {
             try
             {
-                var newPost = _postPostsService.AddPost(post);
+                var newPost = await  _postPostsService.AddPost(post);
                 return CreatedAtAction("PostsPost", new { id = post.Id }, newPost);
             } 
             catch (BadHttpRequestException ex)

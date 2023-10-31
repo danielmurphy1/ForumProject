@@ -19,54 +19,51 @@ namespace ForumProject.DatabaseServices.BoardsServices
         {
             var boards = await _context.Boards
                 .Include(b => b.Posts).Include("Posts.User").ToListAsync();
+            
             var boardDTOs = new List<BoardDTO>();
             foreach (var board in boards)
             {
-                //var postDTOs = new List<PostDTO>();
-                //for (int i = 0; i < board.Posts.Count(); i++)
-                //{
-                //    //var boardPost = board.Posts.ElementAt(i);
-                //    postDTOs.Add(new PostDTO
-                //    {
-                //        Id = board.Posts.ElementAt(i).Id,
-                //        Title = board.Posts.ElementAt(i).Title,
-                //        Body = board.Posts.ElementAt(i).Body, 
-                //        CreatedAt = board.Posts.ElementAt(i).CreatedAt,
-                //        User = new UserDTO
-                //        {
-                //            Id = board.Posts.ElementAt(i).User.Id,
-                //            Username = board.Posts.ElementAt(i).User.Username
-                //        }
-                //    });
-                //}
-                //board.Posts.Sort((x,y) =>  x.CreatedAt.CompareTo(y.CreatedAt));
                 var boardPosts = board.Posts.ToList();
-                boardPosts.Sort((x, y) => x.CreatedAt.CompareTo(y.CreatedAt));
+                //need different DTO form whether there are Posts or not - might be another way to differentiate
+                if(boardPosts.Count > 0)
+                {
+                    boardPosts.Sort((x, y) => x.CreatedAt.CompareTo(y.CreatedAt));
 
-                var postDTO = new PostDTO
-                {
-                    Id = boardPosts.LastOrDefault().Id,
-                    Title = boardPosts.LastOrDefault().Title,
-                    Body = boardPosts.LastOrDefault().Body,
-                    CreatedAt = boardPosts.LastOrDefault().CreatedAt,
-                    User = new UserDTO
+
+                    var postDTO = new PostDTO
                     {
-                        Id = boardPosts.LastOrDefault().User.Id,
-                        Username = boardPosts.LastOrDefault().User.Username
-                    }
-                };
-                //var ordered = postDTOs.OrderBy(p => p.CreatedAt).ToList();
-                //postDTOs.Sort((x,y) =>  x.CreatedAt.CompareTo(y.CreatedAt));
-                boardDTOs.Add(new BoardDTO
+                        Id = boardPosts.LastOrDefault().Id,
+                        Title = boardPosts.LastOrDefault().Title,
+                        Body = boardPosts.LastOrDefault().Body,
+                        CreatedAt = boardPosts.LastOrDefault().CreatedAt,
+                        User = new UserDTO
+                        {
+                            Id = boardPosts.LastOrDefault().User.Id,
+                            Username = boardPosts.LastOrDefault().User.Username
+                        }
+                    };
+                    boardDTOs.Add(new BoardDTO
+                    {
+                        Id = board.Id,
+                        Title = board.Title,
+                        Description = board.Description,
+                        ImgUrl = board.ImgUrl,
+                        Topics = board.Posts.Count(),
+                        LastPost = postDTO
+                    });
+                }
+                else
                 {
-                    Id = board.Id,
-                    Title = board.Title,
-                    Description = board.Description,
-                    ImgUrl = board.ImgUrl,
-                    Topics = board.Posts.Count(),
-                    //Posts = postDTOs,
-                    LastPost = postDTO
-                });
+                    boardDTOs.Add(new BoardDTO
+                    {
+                        Id = board.Id,
+                        Title = board.Title,
+                        Description = board.Description,
+                        ImgUrl = board.ImgUrl,
+                        Topics = board.Posts.Count()
+                    });
+                }
+               
             }
             return boardDTOs;
         }

@@ -5,7 +5,7 @@ export interface Board{
     title: string, 
     description: string, 
     topics: number,
-    lastPost: Post,
+    lastPost?: Post,
     imgUrl: string, 
     posts: Post[]
 
