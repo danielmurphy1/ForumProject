@@ -15,12 +15,17 @@ namespace ForumProject.Controllers
         private readonly ForumDataContext _context;
         private readonly GetPostsService _getPostsService;
         private readonly PostPostsService _postPostsService;
+        private readonly PutPostsService _putPostsService;
 
-        public PostsController(ForumDataContext context, GetPostsService getPostsService, PostPostsService postPostsService)
+        public PostsController(ForumDataContext context, 
+                                GetPostsService getPostsService, 
+                                PostPostsService postPostsService,
+                                PutPostsService putPostService)
         {
             _context = context;
             _getPostsService = getPostsService;
             _postPostsService = postPostsService;
+            _putPostsService = putPostService;
         }
 
         //GET: api/Posts
@@ -59,6 +64,24 @@ namespace ForumProject.Controllers
             {
                 return BadRequest(ex.Message);
             }
+        }
+
+        // PUT: api/Posts/5/update_reply
+        [HttpPut("{id}/{property}")]
+        public async Task<IActionResult> PutPost(int id, string property)
+
+        {
+            try
+            {
+                await _putPostsService.UpdatePostViewsOrReplies(id, property);
+                return NoContent();
+            }
+            catch (BadHttpRequestException ex)
+            {
+                return BadRequest();
+            }
+
+            
         }
 
         //[HttpGet("withusers")]
