@@ -12,11 +12,9 @@ namespace ForumProject.Models
         public DateTime CreatedAt { get; set; }
         [Required]
         public int UserId { get; set; }
-        [Required]
-        public User User { get; set; }
+        public User? User { get; set; }
         [Required]
         public int PostId { get; set; }
-        [Required]
-        public Post Post { get; set; }
+        public Post? Post { get; set; }
     }
 }
