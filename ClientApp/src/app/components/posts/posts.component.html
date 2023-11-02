@@ -38,7 +38,7 @@
             </thead>
             <tbody>
                 <tr *ngFor="let post of posts | slice: (page-1) * pageSize : page * pageSize">
-                    <td><a routerLink="{{ post.id }}">{{ post.title }}</a></td>
+                    <td><a routerLink="{{ post.id }}" (click)="updatePostViews(post, 'Views')">{{ post.title }}</a></td>
                     <td>{{ post.user?.username }}</td>
                     <td>{{ post.replies }}</td>
                     <td>{{ post.views }}</td>

@@ -28,6 +28,7 @@ export class PostsComponent implements OnInit{
       this.boardImg = board.imgUrl;
       this.posts = board.posts;
       this.collectionSize = board.posts.length;
+      console.log("Single Board", board)
     })
     this.route.params.subscribe((params) => {
       console.log(params)
@@ -37,11 +38,11 @@ export class PostsComponent implements OnInit{
     console.log("this.route.snapshote.params", this.route.snapshot.params)
   }
 
-  open(content: any){
+  open(content: any): void {
     this.modalService.open(content, { centered: true} )
   }
 
-  addNewPost(post: Post){
+  addNewPost(post: Post): void {
     this.dataService.addNewPost(post).subscribe((p) => {
       // this.posts.push(p);
       //User object is added to the response - user object not sent to server/database
@@ -53,5 +54,10 @@ export class PostsComponent implements OnInit{
       this.posts.push(p);
     });
     console.log("inbound post", post)
+  }
+
+  updatePostViews(post: Post, property: string): void {
+    console.log("updatePostClicked post and property", JSON.stringify(post) + ' ' + property)
+    this.dataService.updatePostViewsOrReplies(post, property).subscribe().unsubscribe();
   }
 }
