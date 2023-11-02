@@ -16,6 +16,7 @@ export class RepliesComponent implements OnInit {
   pageSize: number = 10;
   collectionSize: number;
   replyBody: string;
+  currentPostId: number;
 
   constructor(private dataService: ForumDataService, private route: ActivatedRoute){}
 
@@ -48,7 +49,38 @@ export class RepliesComponent implements OnInit {
 
   }
 
-  scrollToBottom(): void{
+  scrollToBottom(): void {
     window.scrollTo(0, document.body.scrollHeight);
+  }
+
+  saveNewReply(): void {
+    console.log("replyBody", this.replyBody)
+    const newReply: Reply ={
+      postId: this.topic.id!,
+      body: this.replyBody,
+      //userId will need to be added dynamically later
+      userId: 1,
+      createdAt: new Date()
+    }
+    // console.log("newReplyRequest: ", newReply)
+    this.dataService.addNewReply(newReply).subscribe((r) => {
+      r.user = {
+        username: "Admin",
+        id:  r.userId
+      }
+
+      this.topic.replyMessages?.push(r);
+      // console.log("pushed reply: ", r)
+    });
+  }
+
+  updatePostReplies(): void {
+    console.log("this.topic", this.topic)
+    this.dataService.updatePostViewsOrReplies(this.topic, "Replies").subscribe();
+  }
+
+  saveReplyButtonClickHandler(): void {
+    this.saveNewReply();
+    this.updatePostReplies();
   }
 }

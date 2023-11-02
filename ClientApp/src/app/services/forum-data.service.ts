@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Board } from '../models/Board';
 import { Post } from '../models/Post';
+import { Reply } from '../models/Reply';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 @Injectable({
@@ -39,6 +40,10 @@ export class ForumDataService {
   addNewPost(post: Post): Observable<Post>{
     return this.http.post<Post>(`${this.apiUrl}/Posts`, post, this.httpOptions);
   }
+
+  addNewReply(reply: Reply): Observable<Reply>{
+    return this.http.post<Reply>(`${this.apiUrl}/Replies`, reply, this.httpOptions);
+  } 
 
   updatePostViewsOrReplies(post: Post, property: string): Observable<Post>{
     return this.http.put<Post>(`${this.apiUrl}/Posts/${post.id}/${property}`, post, this.httpOptions);

@@ -29,7 +29,7 @@ export class NewPostFormComponent implements OnInit{
       //will need to get dynamic userId once that is implemented
       userId: 3,
       replies: 0, 
-      views: 16
+      views: 0
     }
     this.onNewPostSave.emit(newPost);
   }

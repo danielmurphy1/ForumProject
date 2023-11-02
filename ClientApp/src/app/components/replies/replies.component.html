@@ -33,7 +33,7 @@
             <div class="d-flex flex-row justify-content-between">
                 <div>
                     <h5 class="card-title">Re: {{ topic.title }}</h5>
-                    <h6 class="card-subtitle mb2 text-body-secondary">By: {{ reply.user.username }}</h6>
+                    <h6 class="card-subtitle mb2 text-body-secondary">By: {{ reply.user?.username }}</h6>
                 </div>
                 <div>
                     <p>Post #: {{ i+ 2 }}</p>
@@ -47,7 +47,7 @@
     </div>
     <hr>
     <!-- reply form -->
-    <form #replyForm="ngForm" (ngSubmit)="replyForm.reset()">
+    <form #replyForm="ngForm" (ngSubmit)="saveReplyButtonClickHandler(); replyForm.reset()">
         <div>
             <label for="replyBody" class="form-label"><strong>Re: {{ topic.title }}</strong></label>
             <textarea 
@@ -57,7 +57,7 @@
                 cols="30" 
                 rows="10"
                 [(ngModel)]="replyBody"
-                placeholder="Type your post text here"
+                placeholder="Type your reply text here"
                 required>
             </textarea>
             <div class="d-flex flex-column flex-md-row">
