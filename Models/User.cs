@@ -16,7 +16,7 @@ namespace ForumProject.Models
         public DateTime CreatedAt { get; set; }
         [Required]
         public bool Admin { get; set; } = false;
-        public IEnumerable<Post> Posts { get; set; }
-        public IEnumerable<Reply> Replies { get; set; }
+        public IEnumerable<Post>? Posts { get; set; }
+        public IEnumerable<Reply>? Replies { get; set; }
     }
 }

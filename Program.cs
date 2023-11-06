@@ -2,6 +2,7 @@ using ForumProject.Data;
 using ForumProject.DatabaseServices.BoardsServices;
 using ForumProject.DatabaseServices.PostsServices;
 using ForumProject.DatabaseServices.RepliesServices;
+using ForumProject.DatabaseServices.UsersServices;
 using System.Text.Json.Serialization;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -15,6 +16,7 @@ builder.Services.AddScoped<GetPostsService>();
 builder.Services.AddScoped<PostPostsService>();
 builder.Services.AddScoped<PutPostsService>();
 builder.Services.AddScoped<PostRepliesService>();
+builder.Services.AddScoped<PostUsersServices>();
 
 builder.Services.AddCors(p => p.AddPolicy("corspolicy", build =>
 {
