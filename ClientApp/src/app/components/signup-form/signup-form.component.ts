@@ -1,4 +1,5 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { ForumDataService } from '../../services/forum-data.service';
 
 @Component({
   selector: 'app-signup-form',
@@ -10,13 +11,24 @@ export class SignupFormComponent implements OnInit{
   email: string;
   password: string;
   @Output() onSignupSave: EventEmitter<Event> = new EventEmitter();
-  constructor() {}
+  errorMessage: string;
+  constructor(private dataservice: ForumDataService) {}
 
   ngOnInit(): void {
     
   }
   saveButtonClickHandler(): void{
-    console.log("username", this.username, "email", this.email, "password", this.password);
-    this.onSignupSave.emit();
+    const newUser = {
+      username: this.username,
+      password: this.password,
+      email: this.email,
+      createdAt: new Date()
+    };
+    
+    this.dataservice.addNewUser(newUser).subscribe(() => {
+      this.onSignupSave.emit();
+    }, error => {
+      this.errorMessage = error.error.message;
+    });
   }
 }

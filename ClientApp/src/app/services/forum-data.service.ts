@@ -4,6 +4,7 @@ import { Board } from '../models/Board';
 import { Post } from '../models/Post';
 import { Reply } from '../models/Reply';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { User } from '../models/User';
 
 @Injectable({
   providedIn: 'root'
@@ -47,5 +48,9 @@ export class ForumDataService {
 
   updatePostViewsOrReplies(post: Post, property: string): Observable<Post>{
     return this.http.put<Post>(`${this.apiUrl}/Posts/${post.id}/${property}`, post, this.httpOptions);
+  }
+
+  addNewUser(user: User): Observable<User>{
+    return this.http.post<User>(`${this.apiUrl}/Users`, user, this.httpOptions);
   }
 }
