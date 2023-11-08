@@ -9,6 +9,7 @@ using ForumProject.Data;
 using ForumProject.Models;
 using ForumProject.DatabaseServices.UsersServices;
 using NuGet.Protocol;
+using ForumProject.DataTransferObjects;
 
 namespace ForumProject.Controllers
 {
@@ -85,9 +86,8 @@ namespace ForumProject.Controllers
             return NoContent();
         }
 
-        // POST: api/Users
-        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
-        [HttpPost]
+        // POST: api/Users/signup
+        [HttpPost("signup")]
         public async Task<ActionResult<User>> PostUser(User user)
         {
             try
@@ -105,6 +105,44 @@ namespace ForumProject.Controllers
                 return Conflict(new {ex.Message, StatusCodes.Status409Conflict});
             }
 
+        }
+
+        // POST: api/Users/login
+        [HttpPost("login")]
+        public async Task<ActionResult<UserDTO>> AuthUser(UserDTO user)
+        {
+            //try
+            //{
+            //    var newUser = await _postUsersServices.AddUser(user);
+            //    return CreatedAtAction("GetUser", new { id = user.Id }, newUser);
+            //}
+            //catch (BadHttpRequestException ex)
+            //{
+            //    return BadRequest(ex);
+            //}
+            //catch (DbUpdateException ex)
+            //{
+            //    //return 409 due to not being able to process due to the STATE of the TARGET
+            //    return Conflict(new { ex.Message, StatusCodes.Status409Conflict });
+            //}
+            var checkUser = await _context.Users.FirstOrDefaultAsync(u => u.Username == user.Username);
+            if (checkUser == null)
+            {
+                return NotFound(new { Message = "User not found" });
+            }
+            else if (checkUser.Password != user.Password)
+            {
+                return BadRequest(new { Message = "Incorrect Password" });
+            }
+            else
+            {
+                var userDTO = new UserDTO
+                {
+                    Id = checkUser.Id,
+                    Username = checkUser.Username,
+                };
+                return Ok(userDTO);
+            }
         }
 
         // DELETE: api/Users/5
