@@ -51,6 +51,6 @@ export class ForumDataService {
   }
 
   addNewUser(user: User): Observable<User>{
-    return this.http.post<User>(`${this.apiUrl}/Users`, user, this.httpOptions);
+    return this.http.post<User>(`${this.apiUrl}/Users/signup`, user, this.httpOptions);
   }
 }
