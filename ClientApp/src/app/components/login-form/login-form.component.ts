@@ -1,6 +1,6 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { NgForm } from '@angular/forms';
-import { AuthorizationService } from '../../services/authorization.service';
+import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'app-login-form',
@@ -13,7 +13,7 @@ export class LoginFormComponent implements OnInit{
   errorMessage: string;
   @Output() onCreateAccount: EventEmitter<Event> = new EventEmitter();
 
-  constructor(private authService: AuthorizationService){}
+  constructor(private authService: AuthService){}
 
   ngOnInit(): void {
     

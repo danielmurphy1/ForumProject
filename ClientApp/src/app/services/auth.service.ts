@@ -6,7 +6,7 @@ import { User } from '../models/User';
 @Injectable({
   providedIn: 'root'
 })
-export class AuthorizationService {
+export class AuthService {
   private apiUrl = 'https://localhost:7061/api';
   httpOptions = {
     headers: new HttpHeaders({
