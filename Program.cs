@@ -3,6 +3,9 @@ using ForumProject.DatabaseServices.BoardsServices;
 using ForumProject.DatabaseServices.PostsServices;
 using ForumProject.DatabaseServices.RepliesServices;
 using ForumProject.DatabaseServices.UsersServices;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.IdentityModel.Tokens;
+using System.Text;
 using System.Text.Json.Serialization;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -17,6 +20,22 @@ builder.Services.AddScoped<PostPostsService>();
 builder.Services.AddScoped<PutPostsService>();
 builder.Services.AddScoped<PostRepliesService>();
 builder.Services.AddScoped<PostUsersServices>();
+builder.Services.AddAuthentication(x =>
+{
+    x.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+    x.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+}).AddJwtBearer(x =>
+{
+    x.RequireHttpsMetadata = false;
+    x.SaveToken = true;
+    x.TokenValidationParameters = new TokenValidationParameters
+    {
+        ValidateIssuerSigningKey = true,
+        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("MySecretKeyForDevelopment")), 
+        ValidateAudience = false,
+        ValidateIssuer = false
+    };
+});
 
 builder.Services.AddCors(p => p.AddPolicy("corspolicy", build =>
 {
@@ -37,6 +56,7 @@ if (!app.Environment.IsDevelopment())
 }
 
 app.UseCors("corspolicy");
+app.UseAuthentication();
 app.UseHttpsRedirection();
 app.UseStaticFiles();
 app.UseRouting();

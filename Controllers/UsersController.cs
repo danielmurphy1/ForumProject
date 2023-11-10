@@ -10,6 +10,12 @@ using ForumProject.Models;
 using ForumProject.DatabaseServices.UsersServices;
 using NuGet.Protocol;
 using ForumProject.DataTransferObjects;
+using System.IdentityModel.Tokens.Jwt;
+using System.Text;
+using System.Security.Claims;
+using Microsoft.IdentityModel.Tokens;
+using ForumProject.Exceptions;
+using Microsoft.AspNetCore.Mvc.Infrastructure;
 
 namespace ForumProject.Controllers
 {
@@ -88,7 +94,7 @@ namespace ForumProject.Controllers
 
         // POST: api/Users/signup
         [HttpPost("signup")]
-        public async Task<ActionResult<User>> PostUser(User user)
+        public async Task<ActionResult<User>> PostNewUser(User user)
         {
             try
             {
@@ -109,39 +115,25 @@ namespace ForumProject.Controllers
 
         // POST: api/Users/login
         [HttpPost("login")]
-        public async Task<ActionResult<UserDTO>> AuthUser(UserDTO user)
+        public async Task<ActionResult<UserDTO>> PostAuthUser(UserDTO user)
         {
-            //try
-            //{
-            //    var newUser = await _postUsersServices.AddUser(user);
-            //    return CreatedAtAction("GetUser", new { id = user.Id }, newUser);
-            //}
-            //catch (BadHttpRequestException ex)
-            //{
-            //    return BadRequest(ex);
-            //}
-            //catch (DbUpdateException ex)
-            //{
-            //    //return 409 due to not being able to process due to the STATE of the TARGET
-            //    return Conflict(new { ex.Message, StatusCodes.Status409Conflict });
-            //}
-            var checkUser = await _context.Users.FirstOrDefaultAsync(u => u.Username == user.Username);
-            if (checkUser == null)
+            try
             {
-                return NotFound(new { Message = "User not found" });
+                var checkedUser = await _postUsersServices.AuthenticateUser(user);
+                return Ok(checkedUser);
             }
-            else if (checkUser.Password != user.Password)
+            catch (NotFoundException ex)
             {
-                return BadRequest(new { Message = "Incorrect Password" });
+                return NotFound(ex.Message);
             }
-            else
+            catch (BadRequestException ex)
             {
-                var userDTO = new UserDTO
-                {
-                    Id = checkUser.Id,
-                    Username = checkUser.Username,
-                };
-                return Ok(userDTO);
+                return BadRequest(ex.Message);
+            }
+            catch (Exception)
+            {
+                return StatusCode(500, "Server Error");
+                
             }
         }
 
@@ -169,5 +161,7 @@ namespace ForumProject.Controllers
         {
             return (_context.Users?.Any(e => e.Id == id)).GetValueOrDefault();
         }
+
+        
     }
 }
