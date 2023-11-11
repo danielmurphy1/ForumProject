@@ -32,7 +32,7 @@ export class LoginFormComponent implements OnInit{
       console.log(resUser);
     }, error => {
       console.log(error.error);
-      this.errorMessage = error.error.message;
+      this.errorMessage = error.error;
     }); 
   }
 }
