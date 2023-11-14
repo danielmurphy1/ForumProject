@@ -14,10 +14,12 @@ import { BoardsComponent } from './components/boards/boards.component';
 import { PostsComponent } from './components/posts/posts.component';
 import { NewPostFormComponent } from './components/new-post-form/new-post-form.component';
 import { RepliesComponent } from './components/replies/replies.component';
+import { AuthGuard } from './guards/auth.guard';
+import { NavbarComponent } from './components/navbar/navbar.component';
 
 const appRoutes: Routes = [
   { path: '', component: HomeComponent },
-  { path: 'boards', component: BoardsComponent },
+  { path: 'boards', component: BoardsComponent, canActivate: [ AuthGuard ] },
   // { path: 'boards/College Football', component: HomeComponent }
   { path: 'boards/:id', component: PostsComponent },
   { path: 'boards/:id/:topic', component: RepliesComponent },
@@ -34,7 +36,8 @@ const appRoutes: Routes = [
     BoardsComponent,
     PostsComponent,
     NewPostFormComponent,
-    RepliesComponent
+    RepliesComponent,
+    NavbarComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
