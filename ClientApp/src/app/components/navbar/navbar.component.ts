@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { AuthService } from '../../services/auth.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-navbar',
@@ -7,4 +9,12 @@ import { Component } from '@angular/core';
 })
 export class NavbarComponent {
   isCollapsed = true;
+
+  constructor(private authService: AuthService, private route: Router){}
+
+  logoutButtonClickHandler(): void {
+    this.authService.logout();
+    this.route.navigate(['']);
+  }
 }
+

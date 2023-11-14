@@ -1,6 +1,7 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { AuthService } from '../../services/auth.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login-form',
@@ -13,7 +14,7 @@ export class LoginFormComponent implements OnInit{
   errorMessage: string;
   @Output() onCreateAccount: EventEmitter<Event> = new EventEmitter();
 
-  constructor(private authService: AuthService){}
+  constructor(private authService: AuthService, private route: Router){}
 
   ngOnInit(): void {
     
@@ -37,8 +38,11 @@ export class LoginFormComponent implements OnInit{
     // }); 
     .subscribe(
       { 
-        next: (res) => {
-          console.log(res);
+        next: (resUser) => {
+          console.log(resUser);
+          this.authService.storeToken(resUser.token!);
+          this.errorMessage = '';
+          this.route.navigate(['boards']);
         }, 
         error: (err) => {
           this.errorMessage = err.error;
