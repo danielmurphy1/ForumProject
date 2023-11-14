@@ -28,11 +28,22 @@ export class LoginFormComponent implements OnInit{
 
   loginButtonClickHandler(form: NgForm): void {
     console.log(form.value);
-    this.authService.login(form.value).subscribe(resUser => {
-      console.log(resUser);
-    }, error => {
-      console.log(error.error);
-      this.errorMessage = error.error;
-    }); 
+    this.authService.login(form.value)
+    // .subscribe(resUser => {
+    //   console.log(resUser);
+    // }, error => {
+    //   console.log(error.error);
+    //   this.errorMessage = error.error;
+    // }); 
+    .subscribe(
+      { 
+        next: (res) => {
+          console.log(res);
+        }, 
+        error: (err) => {
+          this.errorMessage = err.error;
+        }
+      } 
+    )
   }
 }
