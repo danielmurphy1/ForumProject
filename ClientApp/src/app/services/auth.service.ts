@@ -22,11 +22,10 @@ export class AuthService {
   
   logout(): void {
     localStorage.removeItem('token');
+    localStorage.removeItem('username');
+    localStorage.removeItem('userId');
   }
 
-  storeToken(token: string): void {
-    localStorage.setItem('token', token);
-  }
 
   getToken(): string {
     return localStorage.getItem('token')!;
@@ -34,5 +33,11 @@ export class AuthService {
 
   isLoggedIn(): boolean {
     return this.getToken() ? true : false;
+  }
+
+  storeUserCredentials(token: string, username: string, userId: number): void {
+    localStorage.setItem('token', token);
+    localStorage.setItem('username', username);
+    localStorage.setItem('userId', userId.toString());
   }
 }

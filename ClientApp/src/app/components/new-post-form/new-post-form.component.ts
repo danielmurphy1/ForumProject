@@ -12,12 +12,14 @@ export class NewPostFormComponent implements OnInit{
   postBody: string;
   @Output() onNewPostSave: EventEmitter<Post> = new EventEmitter();
   currentBoardId: number;
+  currentUserId: number;
 
   constructor(private route: ActivatedRoute){}
 
   ngOnInit(): void {
     console.log("snapshot", this.route.snapshot)
     this.currentBoardId = this.route.snapshot.params.id;
+    this.currentUserId = +localStorage.getItem('userId')!;
   }
 
   postSaveButtonClickHandler(){
@@ -26,8 +28,7 @@ export class NewPostFormComponent implements OnInit{
       body: this.postBody,
       boardId: this.currentBoardId,
       createdAt: new Date(),
-      //will need to get dynamic userId once that is implemented
-      userId: 3,
+      userId: this.currentUserId,
       replies: 0, 
       views: 0
     }

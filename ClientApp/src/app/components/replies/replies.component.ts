@@ -17,12 +17,15 @@ export class RepliesComponent implements OnInit {
   collectionSize: number;
   replyBody: string;
   currentPostId: number;
+  currentUserId: number;
+  currentUsername: string; 
 
   constructor(private dataService: ForumDataService, private route: ActivatedRoute){}
 
   ngOnInit(): void {
     console.log(this.route.snapshot)
-
+    this.currentUserId = +localStorage.getItem('userId')!;
+    this.currentUsername = localStorage.getItem('username')!;
     console.log(this.route.snapshot.params)
     // this.dataService.getBoards().subscribe((boards) => {
     //   for(const board of boards){
@@ -59,13 +62,13 @@ export class RepliesComponent implements OnInit {
       postId: this.topic.id!,
       body: this.replyBody,
       //userId will need to be added dynamically later
-      userId: 1,
+      userId: this.currentUserId,
       createdAt: new Date()
     }
     // console.log("newReplyRequest: ", newReply)
     this.dataService.addNewReply(newReply).subscribe((r) => {
       r.user = {
-        username: "Admin",
+        username: this.currentUsername,
         id:  r.userId
       }
 

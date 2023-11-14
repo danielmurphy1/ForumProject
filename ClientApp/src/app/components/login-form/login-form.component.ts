@@ -40,7 +40,7 @@ export class LoginFormComponent implements OnInit{
       { 
         next: (resUser) => {
           console.log(resUser);
-          this.authService.storeToken(resUser.token!);
+          this.authService.storeUserCredentials(resUser.token!, resUser.username, resUser.id!);
           this.errorMessage = '';
           this.route.navigate(['boards']);
         }, 

@@ -18,10 +18,12 @@ export class PostsComponent implements OnInit{
   boardTitle: string;
   boardText: string;
   boardImg: string;
+  currentUsername: string;
 
   constructor(private modalService: NgbModal, private dataService: ForumDataService, private route: ActivatedRoute){}
 
   ngOnInit(): void {
+    this.currentUsername = localStorage.getItem('username')!;
     this.dataService.getSingleBoardWithPosts(this.route.snapshot.params.id).subscribe((board) =>{
       this.boardTitle = board.title;
       this.boardText = board.description;
@@ -48,7 +50,7 @@ export class PostsComponent implements OnInit{
       //User object is added to the response - user object not sent to server/database
       p.user = {
         id: p.userId,
-        username: "Ben"
+        username: this.currentUsername
       }
       console.log("response post", p)
       this.posts.push(p);
