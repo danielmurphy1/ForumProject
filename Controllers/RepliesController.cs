@@ -8,6 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using ForumProject.Data;
 using ForumProject.Models;
 using ForumProject.DatabaseServices.RepliesServices;
+using Microsoft.AspNetCore.Authorization;
 
 namespace ForumProject.Controllers
 {
@@ -25,6 +26,8 @@ namespace ForumProject.Controllers
         }
 
         // GET: api/Replies
+        //For Testing Only
+        [Authorize]
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Reply>>> GetReplies()
         {
@@ -36,6 +39,8 @@ namespace ForumProject.Controllers
         }
 
         // GET: api/Replies/5
+        //For Testing Only
+        [Authorize]
         [HttpGet("{id}")]
         public async Task<ActionResult<Reply>> GetReply(int id)
         {
@@ -53,39 +58,8 @@ namespace ForumProject.Controllers
             return reply;
         }
 
-        // PUT: api/Replies/5
-        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
-        [HttpPut("{id}")]
-        public async Task<IActionResult> PutReply(int id, Reply reply)
-        {
-            if (id != reply.Id)
-            {
-                return BadRequest();
-            }
-
-            _context.Entry(reply).State = EntityState.Modified;
-
-            try
-            {
-                await _context.SaveChangesAsync();
-            }
-            catch (DbUpdateConcurrencyException)
-            {
-                if (!ReplyExists(id))
-                {
-                    return NotFound();
-                }
-                else
-                {
-                    throw;
-                }
-            }
-
-            return NoContent();
-        }
-
         // POST: api/Replies
-        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
+        [Authorize]
         [HttpPost]
         public async Task<ActionResult<Reply>> PostReply(Reply reply)
         {
@@ -99,31 +73,6 @@ namespace ForumProject.Controllers
                 return BadRequest(ex.Message);
             }
             
-        }
-
-        // DELETE: api/Replies/5
-        [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteReply(int id)
-        {
-            if (_context.Replies == null)
-            {
-                return NotFound();
-            }
-            var reply = await _context.Replies.FindAsync(id);
-            if (reply == null)
-            {
-                return NotFound();
-            }
-
-            _context.Replies.Remove(reply);
-            await _context.SaveChangesAsync();
-
-            return NoContent();
-        }
-
-        private bool ReplyExists(int id)
-        {
-            return (_context.Replies?.Any(e => e.Id == id)).GetValueOrDefault();
         }
     }
 }

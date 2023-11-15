@@ -5,6 +5,7 @@ using ForumProject.Models;
 using Microsoft.EntityFrameworkCore;
 using ForumProject.DataTransferObjects;
 using ForumProject.DatabaseServices.PostsServices;
+using Microsoft.AspNetCore.Authorization;
 
 namespace ForumProject.Controllers
 {
@@ -29,6 +30,7 @@ namespace ForumProject.Controllers
         }
 
         //GET: api/Posts
+        [Authorize]
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Post>>> GetAllPosts()
         {
@@ -37,6 +39,7 @@ namespace ForumProject.Controllers
 
 
         //GET: api/Posts/1
+        [Authorize]
         [HttpGet("{id}")]
         public async Task<ActionResult<PostDTO>> GetSinglePost(int id)
         {
@@ -52,6 +55,7 @@ namespace ForumProject.Controllers
         }
 
         //POST: api/Posts
+        [Authorize]
         [HttpPost]
         public async Task<ActionResult<Post>> PostPost(Post post)
         {
@@ -67,7 +71,9 @@ namespace ForumProject.Controllers
         }
 
         // PUT: api/Posts/5/update_reply
+        [Authorize]
         [HttpPut("{id}/{property}")]
+        //public async Task<IActionResult> PutPostReplies(int id, Post post)
         public async Task<IActionResult> PutPost(int id, string property)
 
         {
@@ -84,65 +90,6 @@ namespace ForumProject.Controllers
             
         }
 
-        //[HttpGet("withusers")]
-        //public async Task<ActionResult<IEnumerable<PostDTO>>> GetWithUsers()
-        //{
-        //    //var withUsers = await _context.Posts.Include(x => x.User)
-        //    //    .Where(p => p.BoardId == 1).ToListAsync();
-        //    //return withUsers;
-
-        //    var postEntities = await _context.Posts.Include(x => x.User)
-        //        .OrderBy(x => x.CreatedAt)
-        //        .ToListAsync();
-
-        //    var postDTOs = new List<PostDTO>();
-
-        //    for (int i = 0; i < postEntities.Count; i++)
-        //    {
-        //        var postEntity = postEntities[i];
-        //        postDTOs.Add(new PostDTO
-        //        {
-        //            Id = postEntity.Id,
-        //            Title = postEntity.Title,
-        //            Body = postEntity.Body,
-        //            User = new UserDTO
-        //            {
-        //                Id = postEntity.User.Id,
-        //                Username = postEntity.User.Username,
-        //                CreatedAt = postEntity.User.CreatedAt
-        //            }
-        //        });
-        //    }
-
-        //    return postDTOs;
-        //}
-
-
-        //GET: api/Posts/boardposts/1
-        //[HttpGet("boardposts/{boardId}")]
-        //public async Task<ActionResult<IEnumerable<Post>>> GetBoardPosts(int boardId)
-        //{
-        //    var tempPosts = _context.Posts
-        //        .Include(p => p.User)
-        //        .Where(p => p.BoardId == boardId)
-        //        .OrderBy(p => p.CreatedAt);
-        //    return await tempPosts.ToListAsync();
-
-        //    //var tempPosts = _context.Posts
-        //    //    .Where(p => p.BoardId == id);
-        //    //return await tempPosts.ToListAsync();
-
-        //    //var title = await _context.Boards.Where(b => b.Title == id).FirstOrDefaultAsync();
-        //    //var tempPosts = _context.Posts
-        //    //    .Where(p => p.BoardId == title.Id);
-        //    //return await tempPosts.ToListAsync();
-
-        //    //var posts =  _context.Posts
-        //    //    .Join(_context.Boards.Where(b => b.Title == board),
-        //    //    p => p.BoardId,
-        //    //    b => b.Id,
-        //    //    (p, b) => new { Posts = p, Boards = b });
-        //    //return Ok(await posts.ToListAsync());
-        //}
+        
     }
 }
