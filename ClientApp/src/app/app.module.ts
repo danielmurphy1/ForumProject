@@ -1,7 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { RouterModule, Routes } from '@angular/router';
 
 import { AppComponent } from './app.component';
@@ -16,6 +16,7 @@ import { NewPostFormComponent } from './components/new-post-form/new-post-form.c
 import { RepliesComponent } from './components/replies/replies.component';
 import { AuthGuard } from './guards/auth.guard';
 import { NavbarComponent } from './components/navbar/navbar.component';
+import { TokenInterceptor } from './interceptors/token.interceptor';
 
 const appRoutes: Routes = [
   { path: '', component: HomeComponent },
@@ -46,7 +47,11 @@ const appRoutes: Routes = [
     NgbModule,
     RouterModule.forRoot(appRoutes)
   ],
-  providers: [],
+  providers: [{
+    provide: HTTP_INTERCEPTORS,
+    useClass: TokenInterceptor, 
+    multi: true
+  }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
