@@ -13,21 +13,26 @@ export class SignupFormComponent implements OnInit{
   password: string;
   @Output() onSignupSave: EventEmitter<Event> = new EventEmitter();
   errorMessage: string;
+  isLoading: boolean = false;
+
   constructor(private dataservice: ForumDataService) {}
 
   ngOnInit(): void {
     
   }
   saveButtonClickHandler(form: NgForm): void{
+    this.isLoading = true;
     form.value.createdAt = new Date();
     
     this.dataservice.addNewUser(form.value)
     .subscribe(
       { 
         next: () => {
+          this.isLoading = false;
           this.onSignupSave.emit();
         },
         error: (error) => {
+          this.isLoading = false;
           this.errorMessage = error.error.message;
         }
       }

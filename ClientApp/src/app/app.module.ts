@@ -17,6 +17,7 @@ import { RepliesComponent } from './components/replies/replies.component';
 import { AuthGuard } from './guards/auth.guard';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { TokenInterceptor } from './interceptors/token.interceptor';
+import { LoadingSpinnerComponent } from './components/loading-spinner/loading-spinner.component';
 
 const appRoutes: Routes = [
   { path: '', component: HomeComponent },
@@ -38,7 +39,8 @@ const appRoutes: Routes = [
     PostsComponent,
     NewPostFormComponent,
     RepliesComponent,
-    NavbarComponent
+    NavbarComponent,
+    LoadingSpinnerComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),

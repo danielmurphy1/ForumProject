@@ -12,6 +12,7 @@ export class LoginFormComponent implements OnInit{
   username: string;
   password: string;
   errorMessage: string;
+  isLoading: boolean = false;
   @Output() onCreateAccount: EventEmitter<Event> = new EventEmitter();
 
   constructor(private authService: AuthService, private route: Router){}
@@ -28,6 +29,7 @@ export class LoginFormComponent implements OnInit{
   }
 
   loginButtonClickHandler(form: NgForm): void {
+    this.isLoading = true;
     console.log(form.value);
     this.authService.login(form.value) 
     .subscribe(
@@ -37,9 +39,11 @@ export class LoginFormComponent implements OnInit{
           this.authService.storeUserCredentials(resUser.token!, resUser.username, resUser.id!);
           this.errorMessage = '';
           this.route.navigate(['boards']);
+          this.isLoading = false;
         }, 
         error: (err) => {
           this.errorMessage = err.error;
+          this.isLoading = false;
         }
       } 
     );

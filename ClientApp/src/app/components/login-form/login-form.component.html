@@ -1,4 +1,7 @@
-<form #loginForm="ngForm" (ngSubmit)="loginButtonClickHandler(loginForm); loginForm.reset()" class="mx-md-auto col-md-6 shadow">
+<div *ngIf="isLoading" style="text-align: center;">
+    <app-loading-spinner></app-loading-spinner>
+</div>
+<form #loginForm="ngForm" *ngIf="!isLoading" (ngSubmit)="loginButtonClickHandler(loginForm); loginForm.reset()" class="mx-md-auto col-md-6 shadow">
     <h4>Login</h4>
     <div class="row">
         <div class="col-md-6">

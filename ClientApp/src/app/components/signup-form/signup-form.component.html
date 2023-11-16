@@ -1,4 +1,7 @@
-<form #signupForm="ngForm" (ngSubmit)="saveButtonClickHandler(signupForm); signupForm.reset()">
+<div *ngIf="isLoading" style="text-align: center;">
+    <app-loading-spinner></app-loading-spinner>
+</div>
+<form #signupForm="ngForm" *ngIf="!isLoading" (ngSubmit)="saveButtonClickHandler(signupForm); signupForm.reset()">
     <div>
         <label for="username" class="form-label">Username</label>
         <input 
