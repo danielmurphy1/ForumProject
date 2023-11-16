@@ -2,6 +2,7 @@
 using ForumProject.DataTransferObjects;
 using ForumProject.Exceptions;
 using ForumProject.Models;
+using ForumProject.PasswordHasher;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
@@ -14,10 +15,12 @@ namespace ForumProject.DatabaseServices.UsersServices
     public class PostUsersServices
     {
         private readonly ForumDataContext _context;
+        private readonly IConfiguration _configuration;
 
-        public PostUsersServices(ForumDataContext context)
+        public PostUsersServices(ForumDataContext context, IConfiguration configuration)
         {
             _context = context;
+            _configuration = configuration;
         }
 
         public async Task<User> AddUser(User user)
@@ -30,6 +33,7 @@ namespace ForumProject.DatabaseServices.UsersServices
                     throw new DbUpdateException("Username or Email Already Registered");
                 }
             }
+            user.Password = Hasher.HashPassword(user.Password);
             _context.Users.Add(user);
             await _context.SaveChangesAsync();
             return user;
@@ -40,12 +44,11 @@ namespace ForumProject.DatabaseServices.UsersServices
             var checkUser = await _context.Users.FirstOrDefaultAsync(u => u.Username == user.Username);
             if (checkUser == null)
             {
-                //return NotFound(new { Message = "User not found" });
                 throw new NotFoundException("User Not Found");
             }
-            else if (checkUser.Password != user.Password)
+            //else if (checkUser.Password != user.Password)
+            else if (!Hasher.VerifyPassword(user.Password, checkUser.Password!))
             {
-                //return BadRequest(new { Message = "Incorrect Password" });
                 throw new BadRequestException("Incorrect Password");
             }
             else
@@ -63,7 +66,10 @@ namespace ForumProject.DatabaseServices.UsersServices
         private string CreateJwt(User user)
         {
             var jwtTokenHandler = new JwtSecurityTokenHandler();
-            var key = Encoding.ASCII.GetBytes("MySecretKeyForDevelopment");
+            //var key = Encoding.ASCII.GetBytes("MySecretKeyForDevelopment");
+            var secret = _configuration.GetSection("JWTSecretKey").Value;
+            var key = Encoding.ASCII.GetBytes(secret);
+
             var identity = new ClaimsIdentity(new Claim[]
             {
                 new Claim(ClaimTypes.Name, user.Username)
