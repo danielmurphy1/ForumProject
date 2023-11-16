@@ -8,6 +8,7 @@
             name="username"
             [(ngModel)]="username"
             placeholder="Choose A Username"
+            required
         />
     </div>
     <div>
@@ -20,6 +21,7 @@
             [(ngModel)]="email"
             placeholder="Enter Your Email Address"
             required
+            email
         />
         <div class="mb-3">We will never share your email with anyone.</div>
     </div>
@@ -32,13 +34,14 @@
             name="password"
             [(ngModel)]="password"
             placeholder="Choose A Password"
+            required
         />
         <div class="mb-3">Password must containt ADD_THIS_LATER</div>
     </div>
     <div>
         <div class="d-grid d-block">
             <p class="alert alert-danger" *ngIf="errorMessage">{{ errorMessage }}</p>
-            <button type="submit" class="btn btn-primary">Save</button>
+            <button type="submit" class="btn btn-primary" [disabled]="!signupForm.valid">Save</button>
         </div>
     </div>
 </form>

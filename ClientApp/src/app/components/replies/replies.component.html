@@ -61,7 +61,7 @@
                 required>
             </textarea>
             <div class="d-flex flex-column flex-md-row">
-                <button type="submit" class="btn btn-primary mb-3">Save Reply</button>
+                <button type="submit" class="btn btn-primary mb-3"  [disabled]="!replyForm.valid">Save Reply</button>
             </div>
         </div>
     </form>

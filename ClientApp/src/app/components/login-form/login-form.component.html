@@ -9,16 +9,17 @@
                 id="username"
                 name="username"
                 [(ngModel)]="username"
-            />
+                required/>
         </div>
         <div class="col-md-6 mt-2 mt-md-0">
             <label for="password" class="form-label">Password</label>
             <input 
-                type="text" 
+                type="password" 
                 class="form-control" 
                 id="password"
                 name="password"
                 [(ngModel)]="password"
+                required
             />
         </div>
     </div>
@@ -26,9 +27,7 @@
         <p>{{ errorMessage }}</p>
     </div>
     <div class="d-grid d-md-block">
-        <!-- <button type="submit" routerLink="/boards" class="btn btn-primary mt-3">Login</button> -->
-        <button type="submit" class="btn btn-primary mt-3">Login</button>
-
+        <button type="submit" class="btn btn-primary mt-3" [disabled]="!loginForm.valid">Login</button>
     </div>
     <br>
     <p>No Account?  <button type="button" class="btn btn-primary btn-sm" (click)="signupButtonClickHandler()">Create Account</button></p>
