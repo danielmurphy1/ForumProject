@@ -21,10 +21,16 @@ export class SignupFormComponent implements OnInit{
   saveButtonClickHandler(form: NgForm): void{
     form.value.createdAt = new Date();
     
-    this.dataservice.addNewUser(form.value).subscribe(() => {
-      this.onSignupSave.emit();
-    }, error => {
-      this.errorMessage = error.error.message;
-    });
+    this.dataservice.addNewUser(form.value)
+    .subscribe(
+      { 
+        next: () => {
+          this.onSignupSave.emit();
+        },
+        error: (error) => {
+          this.errorMessage = error.error.message;
+        }
+      }
+    );
   }
 }
