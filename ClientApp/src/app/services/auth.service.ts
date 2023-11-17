@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { BehaviorSubject, Observable, Subject, of, tap } from 'rxjs';
 import { User } from '../models/User';
 
 @Injectable({
@@ -8,16 +8,23 @@ import { User } from '../models/User';
 })
 export class AuthService {
   private apiUrl = 'https://localhost:7061/api';
+  isAuthenticated = new BehaviorSubject<boolean>(false);
   httpOptions = {
     headers: new HttpHeaders({
       'Content-Type': 'application/json'
     })
   };
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) { 
+    this.isAuthenticated.next(this.isLoggedIn()); 
+  }
 
   login(user: User): Observable<User> {
     return this.http.post<User>(`${this.apiUrl}/Users/login`, user, this.httpOptions);
+    // //below sets the isAuthenticated BehaviorSubject to true so that the navbar subscription can get the value
+    //   .pipe(tap(() => {
+    //     this.isAuthenticated.next(true);
+    //   }));
   }
   
   logout(): void {

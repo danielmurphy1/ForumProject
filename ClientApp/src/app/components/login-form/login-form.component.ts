@@ -20,10 +20,7 @@ export class LoginFormComponent implements OnInit{
   ngOnInit(): void {
     
   }
-
-  // test(){
-  //   console.log("clicked here")
-  // }
+  
   signupButtonClickHandler(): void{
     this.onCreateAccount.emit();
   }
@@ -40,6 +37,7 @@ export class LoginFormComponent implements OnInit{
           this.errorMessage = '';
           this.route.navigate(['boards']);
           this.isLoading = false;
+          this.authService.isAuthenticated.next(true);
         }, 
         error: (err) => {
           this.errorMessage = err.error;

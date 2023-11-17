@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'app-home',
@@ -7,10 +8,13 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit{
-  constructor(private modalService: NgbModal){}
+  isAuthenticated: boolean;
+  constructor(private modalService: NgbModal, private authService: AuthService){}
 
   ngOnInit(): void {
-    
+    this.authService.isAuthenticated.subscribe(value => {
+      this.isAuthenticated = value;
+    })
   }
 
   open(content: any){
