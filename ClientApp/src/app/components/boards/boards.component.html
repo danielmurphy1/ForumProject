@@ -1,18 +1,18 @@
-<div class="container red-border">
-    <div *ngFor="let board of boards" class="card mb-2 container w-75">
+<div class="container">
+    <div *ngFor="let board of boards" class="card mb-2 container w-75 shadow">
         <div class="card-body d-flex flex-column flex-md-row justify-content-between">
             <img src="{{ board.imgUrl }}" class="col-md-2" alt="">
             <div class="col-md-5">
                 <a  routerLink="{{ board.id }}"><h5 class="card-title">{{ board.title }}</h5></a>
-                <p class="card-text">{{ board.description }}</p>
+                <h6 class="card-text">{{ board.description }}</h6>
             </div>
             <div class="col-md-2">
                 <p>Number of Topics: {{ board.topics }}</p>
             </div>
             <div class="col-md-3">
-                <p>Last Post: {{ board.lastPost?.title }}</p>
-                <p>By: {{ board.lastPost?.user?.username }}</p>
-                <p>On: {{ board.lastPost?.createdAt | date: 'short'}}</p>
+                <p>Last Post: <strong>{{ board.lastPost?.title }}</strong></p>
+                <p>By: <strong>{{ board.lastPost?.user?.username }}</strong></p>
+                <p>On: <strong>{{ board.lastPost?.createdAt | date: 'short'}}</strong></p>
             </div>
         </div>
         

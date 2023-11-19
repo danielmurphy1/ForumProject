@@ -1,7 +1,4 @@
 <div class="container">
-    <p>
-        Welcome to Dan's Forum. Here you can discuss things that Dan likes.
-    </p>
     <app-login-form *ngIf="!isAuthenticated" (onCreateAccount)="open(content)"></app-login-form>
     <ng-template #content let-modal>
         <div class="modal-header">

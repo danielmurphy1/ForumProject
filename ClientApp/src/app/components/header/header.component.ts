@@ -6,6 +6,6 @@ import { Component } from '@angular/core';
   styleUrls: ['./header.component.css']
 })
 export class HeaderComponent {
-  title: string = "Forum Project";
-  subtitle: string = "Current Subtitle";
+  title: string = "Eclectic Forums";
+  subtitle: string = "A Place To Discuss The Varied Interests of the Webmaster";
 }
