@@ -22,8 +22,8 @@ import { LoadingSpinnerComponent } from './components/loading-spinner/loading-sp
 const appRoutes: Routes = [
   { path: '', component: HomeComponent },
   { path: 'boards', component: BoardsComponent, canActivate: [ AuthGuard ] },
-  { path: 'boards/:id', component: PostsComponent },
-  { path: 'boards/:id/:topic', component: RepliesComponent },
+  { path: 'boards/:id', component: PostsComponent, canActivate: [ AuthGuard ] },
+  { path: 'boards/:id/:topic', component: RepliesComponent, canActivate: [ AuthGuard ] },
   { path: '**', component: HomeComponent },
 ];
 
