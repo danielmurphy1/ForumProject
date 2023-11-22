@@ -20,19 +20,17 @@ export class LoginFormComponent implements OnInit{
   ngOnInit(): void {
     
   }
-  
+
   signupButtonClickHandler(): void{
     this.onCreateAccount.emit();
   }
 
   loginButtonClickHandler(form: NgForm): void {
     this.isLoading = true;
-    console.log(form.value);
     this.authService.login(form.value) 
     .subscribe(
       { 
         next: (resUser) => {
-          console.log(resUser);
           this.authService.storeUserCredentials(resUser.token!, resUser.username, resUser.id!);
           this.errorMessage = '';
           this.route.navigate(['boards']);

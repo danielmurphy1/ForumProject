@@ -18,7 +18,6 @@ export class HomeComponent implements OnInit{
   }
 
   open(content: any){
-    console.log("contnet", content)
     //for later beforeDismiss() callback might be able to be used - see docs
     // this.modalService.open(content, { centered: true, beforeDismiss() {
     //   return false

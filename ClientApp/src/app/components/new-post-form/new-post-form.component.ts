@@ -17,7 +17,6 @@ export class NewPostFormComponent implements OnInit{
   constructor(private route: ActivatedRoute){}
 
   ngOnInit(): void {
-    console.log("snapshot", this.route.snapshot)
     this.currentBoardId = this.route.snapshot.params.id;
     this.currentUserId = +localStorage.getItem('userId')!;
   }

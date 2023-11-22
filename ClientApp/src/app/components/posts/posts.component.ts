@@ -30,14 +30,7 @@ export class PostsComponent implements OnInit{
       this.boardImg = board.imgUrl;
       this.posts = board.posts;
       this.collectionSize = board.posts.length;
-      console.log("Single Board", board)
     })
-    this.route.params.subscribe((params) => {
-      console.log(params)
-    });
-    console.log(this.route.snapshot)
-    console.log("this.route.params", this.route.params)
-    console.log("this.route.snapshote.params", this.route.snapshot.params)
   }
 
   open(content: any): void {
@@ -51,15 +44,12 @@ export class PostsComponent implements OnInit{
       p.user = {
         id: p.userId,
         username: this.currentUsername
-      }
-      console.log("response post", p)
+      };
       this.posts.push(p);
     });
-    console.log("inbound post", post)
   }
 
   updatePostViews(post: Post, property: string): void {
-    console.log("updatePostClicked post and property", JSON.stringify(post) + ' ' + property)
     this.dataService.updatePostViewsOrReplies(post, property).subscribe().unsubscribe();
   }
 }

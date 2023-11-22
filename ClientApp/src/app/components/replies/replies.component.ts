@@ -23,10 +23,8 @@ export class RepliesComponent implements OnInit {
   constructor(private dataService: ForumDataService, private route: ActivatedRoute){}
 
   ngOnInit(): void {
-    console.log(this.route.snapshot)
     this.currentUserId = +localStorage.getItem('userId')!;
     this.currentUsername = localStorage.getItem('username')!;
-    console.log(this.route.snapshot.params)
     // this.dataService.getBoards().subscribe((boards) => {
     //   for(const board of boards){
     //     if(board.title === this.route.snapshot.params.id){
@@ -47,7 +45,6 @@ export class RepliesComponent implements OnInit {
       this.topic = post;
       this.collectionSize = post.replyMessages?.length || 0;
       // this.postReplies = this.topic.postReplies;
-      console.log("topic", this.topic)
     })
 
   }
@@ -57,15 +54,12 @@ export class RepliesComponent implements OnInit {
   }
 
   saveNewReply(): void {
-    console.log("replyBody", this.replyBody)
     const newReply: Reply ={
       postId: this.topic.id!,
       body: this.replyBody,
-      //userId will need to be added dynamically later
       userId: this.currentUserId,
       createdAt: new Date()
     }
-    // console.log("newReplyRequest: ", newReply)
     this.dataService.addNewReply(newReply).subscribe((r) => {
       r.user = {
         username: this.currentUsername,
@@ -73,12 +67,10 @@ export class RepliesComponent implements OnInit {
       }
 
       this.topic.replyMessages?.push(r);
-      // console.log("pushed reply: ", r)
     });
   }
 
   updatePostReplies(): void {
-    console.log("this.topic", this.topic)
     this.dataService.updatePostViewsOrReplies(this.topic, "Replies").subscribe();
   }
 

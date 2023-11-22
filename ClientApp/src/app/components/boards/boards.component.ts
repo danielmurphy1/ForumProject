@@ -16,7 +16,6 @@ export class BoardsComponent implements OnInit{
   ngOnInit(): void {
     this.dataService.getBoards().subscribe((boards) => {
       this.boards = boards;
-      console.log("Boards", boards)
     }) 
   }
 }
