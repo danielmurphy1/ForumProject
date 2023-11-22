@@ -1,5 +1,6 @@
 <div class="container">
     <app-login-form *ngIf="!isAuthenticated" (onCreateAccount)="open(content)"></app-login-form>
+    <!-- sign-up modal -->
     <ng-template #content let-modal>
         <div class="modal-header">
             <h4 class="modal-title">Sign Up</h4>
