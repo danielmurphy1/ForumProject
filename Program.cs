@@ -9,6 +9,7 @@ using System.Text;
 using System.Text.Json.Serialization;
 
 var builder = WebApplication.CreateBuilder(args);
+var key = builder.Configuration.GetSection("JWTSecretKey").Value;
 
 // Add services to the container.
 
@@ -31,7 +32,7 @@ builder.Services.AddAuthentication(x =>
     x.TokenValidationParameters = new TokenValidationParameters
     {
         ValidateIssuerSigningKey = true,
-        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("MySecretKeyForDevelopment")), 
+        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(key)), 
         ValidateAudience = false,
         ValidateIssuer = false
     };
