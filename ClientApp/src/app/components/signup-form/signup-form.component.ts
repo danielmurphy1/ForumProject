@@ -1,6 +1,6 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
-import { ForumDataService } from '../../services/forum-data.service';
 import { NgForm } from '@angular/forms';
+import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'app-signup-form',
@@ -15,7 +15,7 @@ export class SignupFormComponent implements OnInit{
   errorMessage: string;
   isLoading: boolean = false;
 
-  constructor(private dataservice: ForumDataService) {}
+  constructor(private authService: AuthService) {}
 
   ngOnInit(): void {
     
@@ -24,7 +24,7 @@ export class SignupFormComponent implements OnInit{
     this.isLoading = true;
     form.value.createdAt = new Date();
     
-    this.dataservice.addNewUser(form.value)
+    this.authService.addNewUser(form.value)
     .subscribe(
       { 
         next: () => {

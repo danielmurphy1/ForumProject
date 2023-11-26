@@ -45,8 +45,4 @@ export class ForumDataService {
   updatePostViewsOrReplies(post: Post, property: string): Observable<Post>{
     return this.http.put<Post>(`${this.apiUrl}/Posts/${post.id}/${property}`, post, this.httpOptions);
   }
-
-  addNewUser(user: User): Observable<User>{
-    return this.http.post<User>(`${this.apiUrl}/Users/signup`, user, this.httpOptions);
-  }
 }

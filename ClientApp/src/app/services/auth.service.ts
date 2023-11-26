@@ -22,6 +22,10 @@ export class AuthService {
   login(user: User): Observable<User> {
     return this.http.post<User>(`${this.apiUrl}/Users/login`, user, this.httpOptions);
   }
+
+  addNewUser(user: User): Observable<User>{
+    return this.http.post<User>(`${this.apiUrl}/Users/signup`, user, this.httpOptions);
+  }
   
   logout(): void {
     localStorage.removeItem('token');
