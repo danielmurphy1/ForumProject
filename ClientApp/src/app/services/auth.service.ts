@@ -7,7 +7,9 @@ import { User } from '../models/User';
   providedIn: 'root'
 })
 export class AuthService {
-  private apiUrl = 'https://localhost:7061/api';
+  // private apiUrl = 'https://localhost:7061/api';
+  //live server
+  private apiUrl = '/api';
   isAuthenticated = new BehaviorSubject<boolean>(false);
   httpOptions = {
     headers: new HttpHeaders({

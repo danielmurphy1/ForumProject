@@ -13,7 +13,10 @@ export class ForumDataService {
   //json-server server
   // private apiUrl = 'http://localhost:5000';
   //local dev server
-  private apiUrl = 'https://localhost:7061/api';
+  // private apiUrl = 'https://localhost:7061/api';
+  //live server
+  private apiUrl = '/api';
+
   httpOptions = {
     headers: new HttpHeaders({
       'Content-Type': 'application/json'
