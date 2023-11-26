@@ -73,9 +73,7 @@ namespace ForumProject.Controllers
         // PUT: api/Posts/5/update_reply
         [Authorize]
         [HttpPut("{id}/{property}")]
-        //public async Task<IActionResult> PutPostReplies(int id, Post post)
         public async Task<IActionResult> PutPost(int id, string property)
-
         {
             try
             {
@@ -86,7 +84,6 @@ namespace ForumProject.Controllers
             {
                 return BadRequest();
             }
-
             
         }
 

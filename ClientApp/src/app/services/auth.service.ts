@@ -21,10 +21,6 @@ export class AuthService {
 
   login(user: User): Observable<User> {
     return this.http.post<User>(`${this.apiUrl}/Users/login`, user, this.httpOptions);
-    // //below sets the isAuthenticated BehaviorSubject to true so that the navbar subscription can get the value
-    //   .pipe(tap(() => {
-    //     this.isAuthenticated.next(true);
-    //   }));
   }
   
   logout(): void {

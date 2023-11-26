@@ -46,7 +46,6 @@ namespace ForumProject.DatabaseServices.UsersServices
             {
                 throw new NotFoundException("User Not Found");
             }
-            //else if (checkUser.Password != user.Password)
             else if (!Hasher.VerifyPassword(user.Password, checkUser.Password!))
             {
                 throw new BadRequestException("Incorrect Password");

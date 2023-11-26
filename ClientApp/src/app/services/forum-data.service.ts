@@ -30,10 +30,6 @@ export class ForumDataService {
     return this.http.get<Board>(`${this.apiUrl}/Boards/${id}`);
   }
 
-  // getBoardPosts(id: number): Observable<Post[]>{
-  //   return this.http.get<Post[]>(`${this.apiUrl}/Posts/boardposts/${id}`);
-  // }
-
   getSinglePostWithReplies(id: number): Observable<Post>{
     return this.http.get<Post>(`${this.apiUrl}/Posts/${id}`);
   }

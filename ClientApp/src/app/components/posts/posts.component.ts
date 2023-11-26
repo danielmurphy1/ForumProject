@@ -39,7 +39,6 @@ export class PostsComponent implements OnInit{
 
   addNewPost(post: Post): void {
     this.dataService.addNewPost(post).subscribe((p) => {
-      // this.posts.push(p);
       //User object is added to the response - user object not sent to server/database
       p.user = {
         id: p.userId,

@@ -11,7 +11,6 @@ import { Reply } from '../../models/Reply';
 })
 export class RepliesComponent implements OnInit {
   topic: Post;
-  // postReplies: Reply[];
   page: number = 1;
   pageSize: number = 10;
   collectionSize: number;
@@ -25,26 +24,9 @@ export class RepliesComponent implements OnInit {
   ngOnInit(): void {
     this.currentUserId = +localStorage.getItem('userId')!;
     this.currentUsername = localStorage.getItem('username')!;
-    // this.dataService.getBoards().subscribe((boards) => {
-    //   for(const board of boards){
-    //     if(board.title === this.route.snapshot.params.id){
-    //       for(const post of board.posts){
-    //         if(post.title === this.route.snapshot.params.topic){
-    //           this.topic = post;
-    //           if(post.postReplies){
-    //             this.postReplies = post.postReplies;
-    //             this.collectionSize = this.postReplies.length;
-    //           }
-    //         }
-            
-    //       }
-    //     }
-    //   }
-    // })
     this.dataService.getSinglePostWithReplies(this.route.snapshot.params.topic).subscribe((post) =>{
       this.topic = post;
       this.collectionSize = post.replyMessages?.length || 0;
-      // this.postReplies = this.topic.postReplies;
     })
 
   }
