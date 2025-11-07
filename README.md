@@ -64,6 +64,12 @@ With this project, I also continued to learn more in the Angular Framework as we
 
 Overall, this project was a wonderfull exercise in learning new concepts and practicing those that I had already learned. 
 
+#### Update
+11/7/2025
+Came back and visited this app as I noticed it didn't work any longer due to ElephantSQL being shut down. Updated it to use Neon Console. I struggled with the Update, because I thought that I was keeping the connection string for the DB on Azure, because that it was I do with Render for my Node.js apps. Boy was I wrong. 
+After looking around Azure forever for it, and then consulting AI about where it might be hidden, I realized that I had the connection string tucked away in my `appsettings.Production.json` file and that Azure read directly from that at runtime. Boy, did that take a bit. Then, I couldn't sign-up. Come to realize that I created my `Users` table without quotation marks (since that is how Entity Framework was doing it in the code-first schema), and that I just needed to rename my tables.
+Updating this app was a lesson. Stay calm and just debug. I know how to do it, and it WILL get figured out. Pay attention to the details...even when you KNOW that something is correct, double check it. It just might not be. 
+
 ### Author
 
 - Dan Murphy, Full-Stack Developer, https://www.linkedin.com/in/daniel-murphy-055/, https://danielmurphy.dev
